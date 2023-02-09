@@ -49,5 +49,25 @@ add_executable(tinyg.elf
     xmega/xmega_rtc.c
 )
 
-target_compile_options(tinyg.elf PRIVATE -mmcu=atxmega192a3 -Os)
-target_link_options(tinyg.elf PRIVATE -mmcu=atxmega192a3 -Os)
+target_compile_definitions(tinyg.elf PRIVATE F_CPU=32000000UL)
+target_compile_options(tinyg.elf PRIVATE
+    -mmcu=atxmega192a3
+    -O2 -g2 -Wall
+    --param=min-pagesize=0
+    -funsigned-char
+    -funsigned-bitfields
+    -fno-align-functions
+    -fno-align-jumps
+    -fno-align-loops
+    -fno-align-labels
+    -fno-reorder-blocks
+    -fno-reorder-blocks-and-partition
+    -fno-prefetch-loop-arrays
+    -fno-tree-vect-loop-version
+    -ffunction-sections
+    -fdata-sections
+    -fpack-struct
+    -fshort-enums
+)
+target_link_options(tinyg.elf PRIVATE -mmcu=atxmega192a3)
+
