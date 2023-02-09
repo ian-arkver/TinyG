@@ -71,3 +71,9 @@ target_compile_options(tinyg.elf PRIVATE
 )
 target_link_options(tinyg.elf PRIVATE -mmcu=atxmega192a3)
 
+add_custom_command(
+	TARGET tinyg.elf
+	POST_BUILD
+	COMMAND ${CMAKE_OBJCOPY}
+	ARGS -O ihex $<TARGET_FILE:tinyg.elf> ${PROJECT_BINARY_DIR}/tinyg.hex
+)
