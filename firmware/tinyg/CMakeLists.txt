@@ -53,7 +53,6 @@ target_compile_definitions(tinyg.elf PRIVATE F_CPU=32000000UL)
 target_compile_options(tinyg.elf PRIVATE
     -mmcu=atxmega192a3
     -O2 -g2 -Wall
-    --param=min-pagesize=0
     -funsigned-char
     -funsigned-bitfields
     -fno-align-functions
@@ -69,6 +68,14 @@ target_compile_options(tinyg.elf PRIVATE
     -fpack-struct
     -fshort-enums
 )
+
+if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_C_COMPILER_VERSION VERSION_GREATER 12.0)
+    message(STATUS "Addding workaround for avr-gcc 12 bug")
+    target_compile_options(tinyg.elf PRIVATE
+        --param=min-pagesize=0
+    )
+endif()
+
 target_link_options(tinyg.elf PRIVATE -mmcu=atxmega192a3)
 
 add_custom_command(
