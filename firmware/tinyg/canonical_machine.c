@@ -850,7 +850,7 @@ stat_t cm_get_adc()
 stat_t cm_get_firmware()
 {
 	// M115: Get Firmware Version and Capabilities, see https://www.reprap.org/wiki/G-code#M115:_Get_Firmware_Version_and_Capabilities.
-	static const char m115_response[] PROGMEM = "FIRMWARE_NAME:TinyG, FIRMWARE_URL:https%%3A//github.com/synthetos/TinyG, FIRMWARE_VERSION:%0.2f, FIRMWARE_BUILD:%0.2f, HARDWARE_PLATFORM:%0.2f, HARDWARE_VERSION:%0.2f\n";
+	static const char m115_response[] PROGMEM = "FIRMWARE_NAME:TinyG, FIRMWARE_URL:https%%3A//github.com/synthetos/TinyG, FIRMWARE_VERSION:%0.2f, FIRMWARE_BUILD:%0.2f, HARDWARE_PLATFORM:%0.2f, HARDWARE_VERSION:%0.2f, FEATURE_TAGS:OPENPNP/CMAKE\n";
 	fprintf_P(stderr, m115_response, cs.fw_version, cs.fw_build, cs.hw_platform, cs.hw_version);
 	return (STAT_OK);
 }
