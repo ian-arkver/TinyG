@@ -49,7 +49,10 @@ add_executable(tinyg.elf
     xmega/xmega_rtc.c
 )
 
-target_compile_definitions(tinyg.elf PRIVATE F_CPU=32000000UL)
+target_compile_definitions(tinyg.elf PRIVATE
+    F_CPU=32000000UL
+    M115_BUILD_SYSTEM_STRING=", X-BUILD_SYSTEM:CMake"
+)
 target_compile_options(tinyg.elf PRIVATE
     -mmcu=atxmega192a3
     -O2 -g2 -Wall
