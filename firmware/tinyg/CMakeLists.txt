@@ -1,14 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 
-# https://stackoverflow.com/questions/54482519/avoid-cmake-to-add-the-flags-search-paths-first-and-headerpad-max-install-name
 set(HAVE_FLAG_SEARCH_PATHS_FIRST 0)
 project(tinyg VERSION 0.1.0)
 
-# https://gitlab.kitware.com/cmake/cmake/-/issues/24599
 unset(_CMAKE_APPLE_ARCHS_DEFAULT)
-#set(CMAKE_C_COMPILER_TARGET atxmega192a3)
-#set(CMAKE_SYSTEM_PROCESSOR ARM)
-#set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_C_COMPILER avr-gcc)
 
 add_executable(tinyg.elf
