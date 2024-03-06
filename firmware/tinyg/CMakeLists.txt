@@ -80,10 +80,12 @@ target_compile_options(tinyg.elf PRIVATE
 )
 
 if (CMAKE_COMPILER_IS_GNUCC AND CMAKE_C_COMPILER_VERSION VERSION_GREATER 12.0)
-    message(STATUS "Addding workaround for avr-gcc 12 bug")
-    target_compile_options(tinyg.elf PRIVATE
-        --param=min-pagesize=0
-    )
+    if (CMAKE_C_COMPILER_VERSION VERSION_LESS_EQUAL 13.0)
+        message(STATUS "Addding workaround for avr-gcc 12 bug")
+        target_compile_options(tinyg.elf PRIVATE
+            --param=min-pagesize=0
+        )
+    endif()
 endif()
 
 target_link_options(tinyg.elf PRIVATE -mmcu=atxmega192a3)
