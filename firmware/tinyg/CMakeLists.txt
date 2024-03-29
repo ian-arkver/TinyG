@@ -57,7 +57,10 @@ target_compile_definitions(tinyg.elf PRIVATE
 )
 target_compile_options(tinyg.elf PRIVATE
     -mmcu=atxmega192a3
-    -O2 -g2 -Wall
+    -Wall
+    $<$<CONFIG:RELEASE>:-O2>
+    $<$<CONFIG:DEBUG>:-Og>
+    $<$<CONFIG:DEBUG>:-g2>    
     -funsigned-char
     -funsigned-bitfields
     -fno-align-functions
